@@ -32,8 +32,8 @@ class _MyWidgetState extends State<ClassCreatePage> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ClassService>(builder: (context, classService, child) {
-      // List<ClassData> classList = classService.classList;
-      List<Classroom> classList = ClassroomService().classroomList;
+      List<ClassData> classList = classService.classList;
+      // List<Classroom> classList = ClassroomService().classroomList;
       final mediaQuery = MediaQuery.of(context);
       final screenHeight = mediaQuery.size.height;
       final screenWidth = mediaQuery.size.width;
@@ -126,9 +126,9 @@ class _MyWidgetState extends State<ClassCreatePage> {
                         padding: EdgeInsets.zero, // ListView의 패딩을 없앰
                         itemCount: classList.length,
                         itemBuilder: (context, index) {
-                          Classroom classData = classList[index];
-                          String dateFormat = DateFormat('yyyy-MM-dd')
-                              .format(classData.date); // 날짜 변환
+                          ClassData classData = classList[index];
+                          //  String dateFormat = DateFormat('yyyy-MM-dd')
+                          //  .format(classData.date); // 날짜 변환
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: ElevatedButton(
@@ -168,7 +168,7 @@ class _MyWidgetState extends State<ClassCreatePage> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          classData.className,
+                                          classData.content,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
                                             fontSize: 16.0, // 텍스트 크기 설정
@@ -182,7 +182,7 @@ class _MyWidgetState extends State<ClassCreatePage> {
                                           height: 1,
                                         ), // content와 date 사이의 간격
                                         Text(
-                                          dateFormat,
+                                          classData.date,
                                           style: TextStyle(
                                             fontSize: 12.0, // 텍스트 크기 설정
                                             fontWeight:
